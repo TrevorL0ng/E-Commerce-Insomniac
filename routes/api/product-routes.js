@@ -97,6 +97,10 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   Product.destroy({where: {id: req.params.id}})
+    .then((productTagIds) => res.status(200).json(productTagIds))
+    .catch((err) => {console.log(err);
+                      res.status(400).json(err);
+  });
 });
 
 module.exports = router;
